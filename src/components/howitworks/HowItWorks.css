@@ -1,0 +1,61 @@
+/* Seção inteira */
+.how-it-works {
+  background-color: #992802;
+  padding: 60px;
+  border-radius: 20px;
+  margin: 0 40px;
+}
+
+/* Título */
+.how-title {
+  text-align: center;
+  font-size: 28px;
+  font-weight: 700;
+  color: #FFFFFF;
+  margin-bottom: 40px;
+}
+
+/* Container dos 3 passos */
+.how-steps {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+/* Cada card de passo */
+.how-step {
+  background-color: #20304C;
+  border-radius: 12px;
+  padding: 30px;
+  width: 260px;
+  min-height: 200px;
+}
+
+/* Número grande */
+.how-number {
+  font-size: 36px;
+  font-weight: 700;
+  color: #FFFFFF;
+}
+
+/* Título do passo */
+.how-step h3 {
+  font-size: 16px;
+  font-weight: 700;
+  color: #FFFFFF;
+  margin: 10px 0;
+}
+
+/* Descrição do passo */
+.how-step p {
+  font-size: 13px;
+  color: #94A3B8;
+  line-height: 1.6;
+}
+
+/* Seta entre os passos */
+.how-arrow {
+  font-size: 24px;
+  color: #FFFFFF;
+}
