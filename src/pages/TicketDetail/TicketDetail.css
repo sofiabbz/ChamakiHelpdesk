@@ -1,0 +1,247 @@
+/* Layout geral */
+.ticket-detail {
+  display: flex;
+  background-color: #0A1628;
+  min-height: 100vh;
+}
+
+.ticket-main {
+  margin-left: 220px;
+  padding: 30px;
+  flex: 1;
+}
+
+/* Voltar */
+.ticket-back {
+  color: #94A3B8;
+  text-decoration: none;
+  font-size: 14px;
+  display: inline-block;
+  margin-bottom: 16px;
+}
+
+.ticket-back span {
+  color: #992802;
+}
+
+.ticket-back:hover span {
+  text-decoration: underline;
+}
+
+/* ID do chamado */
+.ticket-id {
+  font-size: 13px;
+  color: #64748B;
+  font-family: monospace;
+}
+
+/* Título */
+.ticket-title {
+  font-size: 22px;
+  font-weight: 700;
+  color: #FFFFFF;
+  margin: 4px 0 12px;
+}
+
+/* Badges */
+.ticket-badges {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 24px;
+}
+
+.badge-alta {
+  background-color: rgba(245, 158, 11, 0.15);
+  color: #F59E0B;
+  padding: 4px 12px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.badge-hardware {
+  background-color: rgba(99, 102, 241, 0.15);
+  color: #6366F1;
+  padding: 4px 12px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+/* Layout 2 colunas */
+.ticket-content {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: 20px;
+}
+
+/* Lado esquerdo */
+.ticket-left {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Lado direito */
+.ticket-right {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Cards */
+.ticket-card {
+  background-color: #20304C;
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.ticket-card-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: #64748B;
+  letter-spacing: 0.5px;
+  margin-bottom: 16px;
+}
+
+/* Grid de informações */
+.ticket-info-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.info-label {
+  font-size: 12px;
+  color: #64748B;
+  display: block;
+  margin-bottom: 2px;
+}
+
+.info-value {
+  font-size: 14px;
+  color: #E2E8F0;
+  display: block;
+}
+
+/* Descrição */
+.ticket-description {
+  font-size: 14px;
+  color: #94A3B8;
+  line-height: 1.6;
+}
+
+/* Comentários */
+.ticket-comments {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.comment-item {
+  background-color: #0A1628;
+  border-radius: 8px;
+  padding: 12px 16px;
+}
+
+.comment-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 6px;
+}
+
+.comment-author {
+  font-size: 13px;
+  font-weight: 600;
+  color: #E2E8F0;
+}
+
+.comment-time {
+  font-size: 12px;
+  color: #64748B;
+}
+
+.comment-text {
+  font-size: 13px;
+  color: #94A3B8;
+  line-height: 1.5;
+}
+
+/* Input de comentário */
+.comment-input-area {
+  display: flex;
+  gap: 10px;
+}
+
+.comment-input {
+  flex: 1;
+  padding: 12px;
+  background-color: #0A1628;
+  border: 1px solid #334155;
+  border-radius: 6px;
+  color: #FFFFFF;
+  font-size: 14px;
+  outline: none;
+}
+
+.comment-input:focus {
+  border-color: #992802;
+}
+
+.comment-send {
+  padding: 12px 20px;
+  background-color: #992802;
+  border: none;
+  border-radius: 6px;
+  color: #FFFFFF;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.comment-send:hover {
+  background-color: #7a2002;
+}
+
+/* Botões de status */
+.status-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.status-btn {
+  padding: 10px 14px;
+  border-radius: 6px;
+  border: none;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  text-align: left;
+  background-color: #0A1628;
+  color: #94A3B8;
+}
+
+.status-btn.active {
+  background-color: #F59E0B;
+  color: #000000;
+}
+
+.status-btn:hover {
+  background-color: #1a2d4a;
+}
+
+.status-btn.active:hover {
+  background-color: #F59E0B;
+}
+
+/* Detalhes */
+.detail-item {
+  margin-bottom: 14px;
+}
+
+.priority-alta {
+  color: #EF4444;
+}

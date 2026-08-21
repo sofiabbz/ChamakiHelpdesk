@@ -82,3 +82,8 @@
   background-color: #7a2002;
   /* Escurece um pouco ao passar o mouse */
 }
+
+/* Tira o sublinhado do logo */
+.navbar-logo {
+  text-decoration: none;
+}

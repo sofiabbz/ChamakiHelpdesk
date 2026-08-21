@@ -1,0 +1,168 @@
+/* Página inteira */
+.login-page {
+  background-color: #000E26;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0;
+  padding: 40px;
+}
+
+/* Lado esquerdo — brand */
+.login-brand {
+  background-color: #992802;
+  border-radius: 16px 0 0 16px;
+  padding: 40px;
+  width: 400px;
+  min-height: 500px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.login-brand-name {
+  font-size: 28px;
+  font-weight: 700;
+  color: #FFFFFF;
+  margin: 0;
+}
+
+.login-brand-sub {
+  font-size: 14px;
+  color: #FFFFFF;
+  opacity: 0.7;
+}
+
+.login-brand-phrase {
+  font-size: 18px;
+  font-weight: 700;
+  color: #FFFFFF;
+  line-height: 1.4;
+}
+
+/* Lado direito — formulário */
+.login-form-container {
+  background-color: #20304C;
+  border-radius: 0 16px 16px 0;
+  padding: 40px;
+  width: 450px;
+  min-height: 500px;
+}
+
+/* Título */
+.login-title {
+  font-size: 28px;
+  font-weight: 700;
+  color: #FFFFFF;
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+/* Linha divisória */
+.login-divider {
+  height: 1px;
+  background-color: #94A3B8;
+  margin-bottom: 24px;
+}
+
+/* Labels */
+.login-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #FFFFFF;
+  display: block;
+  margin-bottom: 6px;
+}
+
+/* Campos de input */
+.login-input {
+  width: 100%;
+  padding: 12px;
+  border-radius: 6px;
+  border: none;
+  font-size: 14px;
+  margin-bottom: 16px;
+  background-color: #FFFFFF;
+}
+
+/* Lembrar de mim e Esqueceu */
+.login-options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.login-remember {
+  font-size: 13px;
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.login-forgot {
+  font-size: 13px;
+  color: #94A3B8;
+  text-decoration: none;
+}
+
+/* Botão Entrar */
+.login-btn {
+  width: 100%;
+  padding: 12px;
+  background-color: #992802;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-bottom: 16px;
+}
+
+.login-btn:hover {
+  background-color: #7a2002;
+}
+
+/* Divisor OU */
+.login-divider-text {
+  text-align: center;
+  margin-bottom: 16px;
+  color: #FFFFFF;
+  font-weight: 600;
+}
+
+/* Botões sociais */
+.login-social {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.login-social-btn {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background-color: #000E26;
+  color: #FFFFFF;
+  border: none;
+  font-size: 18px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+/* Registre-se */
+.login-register {
+  text-align: center;
+  font-size: 13px;
+  color: #94A3B8;
+}
+
+.login-register-link {
+  color: #FFFFFF;
+  font-weight: 700;
+  text-decoration: none;
+}

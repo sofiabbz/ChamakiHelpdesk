@@ -1,0 +1,138 @@
+/* Layout geral */
+.client-dashboard {
+  display: flex;
+  background-color: #0A1628;
+  min-height: 100vh;
+}
+
+/* Área principal — empurrada pra direita da sidebar */
+.client-main {
+  margin-left: 220px;
+  padding: 30px;
+  flex: 1;
+}
+
+/* Topo — título e botão */
+.client-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.client-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: #FFFFFF;
+}
+
+.client-subtitle {
+  font-size: 14px;
+  color: #64748B;
+  margin-top: 4px;
+}
+
+.client-new-btn {
+  background-color: #992802;
+  color: #FFFFFF;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.client-new-btn:hover {
+  background-color: #7a2002;
+}
+
+/* Contadores */
+.client-counters {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.counter-card {
+  background-color: #20304C;
+  border-radius: 8px;
+  padding: 20px;
+}
+
+.counter-number {
+  font-size: 32px;
+  font-weight: 700;
+  display: block;
+}
+
+.counter-number.green { color: #10B981; }
+.counter-number.yellow { color: #F59E0B; }
+.counter-number.red { color: #992802; }
+
+.counter-label {
+  font-size: 14px;
+  color: #94A3B8;
+  margin-top: 4px;
+}
+
+/* Tabela */
+.client-table {
+  background-color: #20304C;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.table-header {
+  display: grid;
+  grid-template-columns: 80px 1fr 120px 120px 100px 100px;
+  padding: 14px 20px;
+  font-size: 14px;
+  font-weight: 700;
+  color: #FFFFFF;
+  border-bottom: 1px solid #0A1628;
+}
+
+.table-row {
+  display: grid;
+  grid-template-columns: 80px 1fr 120px 120px 100px 100px;
+  padding: 14px 20px;
+  font-size: 14px;
+  color: #E2E8F0;
+  border-bottom: 1px solid #0A1628;
+  align-items: center;
+}
+
+.table-row:hover {
+  background-color: #1a2d4a;
+  cursor: pointer;
+}
+
+.table-id {
+  color: #64748B;
+  font-family: monospace;
+}
+
+/* Badges de status */
+.badge {
+  padding: 4px 12px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.badge-aberto {
+  background-color: rgba(16, 185, 129, 0.15);
+  color: #10B981;
+}
+
+.badge-resolvido {
+  background-color: rgba(239, 68, 68, 0.15);
+  color: #EF4444;
+}
+
+.badge-andamento {
+  background-color: rgba(245, 158, 11, 0.15);
+  color: #F59E0B;
+}

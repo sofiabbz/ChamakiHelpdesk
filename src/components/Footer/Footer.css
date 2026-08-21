@@ -1,0 +1,59 @@
+/* Rodapé inteiro */
+.footer {
+  background-color: #0A1628;
+  padding: 24px 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid #20304C;
+  /* Linha fina separando do conteúdo acima */
+}
+
+/* Copyright */
+.footer-copy {
+  font-size: 12px;
+  color: #64748B;
+}
+
+/* Links legais */
+.footer-links {
+  font-size: 12px;
+  color: #64748B;
+}
+
+/* Container das redes */
+.footer-social {
+  text-align: right;
+}
+
+.footer-social span {
+  font-size: 12px;
+  color: #64748B;
+  display: block;
+  margin-bottom: 8px;
+}
+
+/* Ícones das redes */
+.footer-icons {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+}
+
+.footer-icon {
+  background-color: #20304C;
+  color: #FFFFFF;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.footer-icon:hover {
+  background-color: #992802;
+}
