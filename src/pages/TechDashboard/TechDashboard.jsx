@@ -1,11 +1,13 @@
 import Sidebar from "../../components/Sidebar/Sidebar";
 import "./TechDashboard.css";
+import { useNavigate } from "react-router-dom";
 
 function TechDashboard() {
   const tickets = [
     { id: "#001", title: "Computador com memória cheia.", requester: "Maria Rodrigues Melo", category: "Hardware", status: "Aberto", date: "17/08/26", priority: "Alta" },
     { id: "#002", title: "Instalação do Java", requester: "Pedro Souza Santos", category: "Software/Acesso", status: "Resolvido", date: "17/08/26", priority: "Baixa" },
   ];
+  const navigate = useNavigate();
 
   return (
     <div className="tech-dashboard">
@@ -155,7 +157,7 @@ function TechDashboard() {
             </div>
 
             {tickets.map((ticket) => (
-              <div className="tech-table-row" key={ticket.id}>
+              <div className="tech-table-row" key={ticket.id} onClick={() => navigate("/chamado/1")}>
                 <span className="table-id">{ticket.id}</span>
                 <span>{ticket.title}</span>
                 <span>{ticket.requester}</span>

@@ -1,6 +1,10 @@
+import estrela from "../../assets/estrela.png";
+import { useNavigate } from "react-router-dom";
 import "./Contact.css";
 
 function Contact() {
+  const navigate = useNavigate();
+
   return (
     <section className="contact" id="contato">
       {/* id="contato" — o link do navbar rola até aqui */}
@@ -30,7 +34,7 @@ function Contact() {
         </div>
       </div>
 
-      <button className="contact-btn">Solicitar Suporte Agora</button>
+      <button className="contact-btn" onClick={() => navigate("/login")}>Solicitar Suporte Agora</button>
     </section>
   );
 }

@@ -13,6 +13,8 @@
 
 /* Cabeçalho da sidebar */
 .sidebar-header {
+  position: relative;
+  overflow: hidden;
   padding: 0 20px 20px;
   border-bottom: 1px solid #20304C;
 }
@@ -65,3 +67,9 @@
 .sidebar-logout:hover {
   color: #FFFFFF;
 }
+
+.sidebar-logo-img {
+  width: 140px;
+  object-fit: contain;
+}
+

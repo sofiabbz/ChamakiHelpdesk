@@ -1,4 +1,7 @@
 import { Link } from "react-router-dom";
+import logo from "../../assets/logo-chamaki.png";
+import estrela from "../../assets/estrela.png";
+import logoTec from "../../assets/logo-tec.png";
 import "./Sidebar.css";
 
 function Sidebar({ type }) {
@@ -9,15 +12,13 @@ function Sidebar({ type }) {
     <aside className="sidebar">
       {/* aside (ao lado) — barra lateral do site */}
 
-      <div className="sidebar-header">
-        <h2 className="sidebar-logo">Chamaki</h2>
-        <p className="sidebar-sub">
-          {type === "tech" ? "Área do Técnico" : "Área do Cliente"}
-        </p>
-        {/* Se type for "tech", mostra "Área do Técnico" */}
-        {/* Se não, mostra "Área do Cliente" */}
-      </div>
-
+<div className="sidebar-header">
+  <img
+    src={type === "tech" ? logoTec : logo}
+    alt="Chamaki"
+    className="sidebar-logo-img"
+  />
+</div>
       <nav className="sidebar-menu">
         {type === "tech" ? (
           <>
@@ -29,7 +30,7 @@ function Sidebar({ type }) {
         ) : (
           <>
             <Link to="/dashboard" className="sidebar-item">Meus Chamados</Link>
-            <Link to="/novo-chamado" className="sidebar-item">+ Novo Chamado</Link>
+            <Link to="/novo-chamado" className="sidebar-item">Novo Chamado</Link>
             <Link to="#" className="sidebar-item">Meu Perfil</Link>
           </>
         )}

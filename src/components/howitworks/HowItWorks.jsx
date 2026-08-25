@@ -1,8 +1,10 @@
+import estrela from "../../assets/estrela.png";
 import "./HowItWorks.css";
 
 function HowItWorks() {
   return (
     <section className="how-it-works">
+        <img src={estrela} alt="" className="how-star" />
       {/* Título da seção */}
       <h2 className="how-title">Como Funciona?</h2>
 

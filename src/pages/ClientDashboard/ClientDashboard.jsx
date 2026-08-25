@@ -1,5 +1,6 @@
 import Sidebar from "../../components/Sidebar/Sidebar";
 import "./ClientDashboard.css";
+import { useNavigate } from "react-router-dom";
 
 function ClientDashboard() {
   const tickets = [
@@ -8,6 +9,8 @@ function ClientDashboard() {
     { id: "#003", title: "Troca de fonte.", category: "Hardware", status: "Andamento", date: "17/08/26", priority: "Alta" },
   ];
   // Dados fictícios dos chamados
+
+  const navigate = useNavigate();
 
   return (
     <div className="client-dashboard">
@@ -22,7 +25,9 @@ function ClientDashboard() {
             <h1 className="client-title">Meus Chamados</h1>
             <p className="client-subtitle">Acompanhe o status dos seus pedidos.</p>
           </div>
-          <button className="client-new-btn">+ Novo Chamado</button>
+          <button className="client-new-btn" onClick={() => navigate("/novo-chamado")}>
+            + Novo Chamado
+          </button>
         </div>
 
         {/* Contadores */}
@@ -53,7 +58,7 @@ function ClientDashboard() {
           </div>
 
           {tickets.map((ticket) => (
-            <div className="table-row" key={ticket.id}>
+            <div className="table-row" key={ticket.id} onClick={() => navigate("/chamado/1")}>
               <span className="table-id">{ticket.id}</span>
               <span>{ticket.title}</span>
               <span>{ticket.category}</span>

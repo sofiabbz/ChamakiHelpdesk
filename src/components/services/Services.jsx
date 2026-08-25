@@ -1,5 +1,6 @@
 import { useState } from "react";
-import "./services.css";
+import estrela from "../../assets/estrela.png";
+import "./Services.css";
 
 function Services() {
   const [activeCard, setActiveCard] = useState(null);
@@ -40,13 +41,19 @@ function Services() {
       {/* id="servicos" — permite que o link do navbar role até aqui */}
 
       <div className="services-header">
-        <div>
+        <div className="services-header-left">
           <p className="services-subtitle">
             Oferecemos os melhores serviços para te ajudar, veja só:
           </p>
-          <span className="services-hint">(Clique no serviço para + infos)</span>
+          <span className="services-hint">
+            (Clique no serviço para + infos)
+          </span>
         </div>
-        <h2 className="services-title">Serviços</h2>
+
+        <div className="services-card">
+          <img src={estrela} alt="" className="services-star" />
+          <h2 className="services-title">Serviços</h2>
+        </div>
       </div>
 
       <div className="services-list">

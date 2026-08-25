@@ -1,7 +1,10 @@
 import Sidebar from "../../components/Sidebar/Sidebar";
 import "./NewTicket.css";
+import { useNavigate } from "react-router-dom";
 
 function NewTicket() {
+  const navigate = useNavigate();
+
   return (
     <div className="new-ticket">
       <Sidebar type="client" />
@@ -51,7 +54,7 @@ function NewTicket() {
         </div>
 
         <div className="new-ticket-buttons">
-          <button className="btn-cancel">Cancelar</button>
+          <button className="btn-cancel" onClick={() => navigate(-1)}>Cancelar</button>
           <button className="btn-submit">Enviar chamado</button>
         </div>
       </main>

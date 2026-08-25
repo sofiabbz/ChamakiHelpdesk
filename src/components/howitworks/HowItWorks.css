@@ -1,5 +1,7 @@
 /* Seção inteira */
 .how-it-works {
+  position: relative;
+  overflow: hidden;
   background-color: #992802;
   padding: 60px;
   border-radius: 20px;
@@ -58,4 +60,14 @@
 .how-arrow {
   font-size: 24px;
   color: #FFFFFF;
+}
+
+.how-star {
+  width: 350px;
+  position: absolute;
+  top: -60px;
+  right: -40px;
+  filter: brightness(0) saturate(100%) invert(5%) sepia(50%) saturate(3000%) hue-rotate(200deg);
+  opacity: 0.4;
+  pointer-events: none;
 }

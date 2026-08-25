@@ -19,6 +19,8 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  position: relative;
+  overflow: hidden;
 }
 
 .login-brand-name {
@@ -165,4 +167,21 @@
   color: #FFFFFF;
   font-weight: 700;
   text-decoration: none;
+}
+
+/* Logo no card marrom */
+.login-logo {
+  width: 200px;
+  object-fit: contain;
+}
+
+/* Estrela decorativa */
+.login-star {
+  width: 250px;
+  position: absolute;
+  top: 200px;
+  right: -50px;
+  filter: brightness(0);
+  opacity: 0.2;
+  pointer-events: none;
 }

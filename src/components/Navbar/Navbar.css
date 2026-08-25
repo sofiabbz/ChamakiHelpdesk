@@ -1,5 +1,5 @@
 .navbar {
-  background-color: #000E26;
+  background-color: #20304C;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -22,8 +22,8 @@
 }
 
 .navbar-logo-img {
-  width: 250px;
-  height: 250px;
+  width: 180px;
+  height: 160px;
   object-fit: contain;
 }
 

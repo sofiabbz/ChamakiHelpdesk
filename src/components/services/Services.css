@@ -1,50 +1,69 @@
-/* Seção de serviços inteira */
 .services {
   background-color: #000E26;
   padding: 60px;
 }
 
-/* Cabeçalho da seção — textos e título lado a lado */
 .services-header {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  margin-bottom: 40px;
+  gap: 40px;
+  margin-bottom: 30px;
 }
 
-/* Subtítulo */
+.services-header-left {
+  max-width: 300px;
+}
+
 .services-subtitle {
   font-size: 18px;
   font-weight: 700;
   color: #FFFFFF;
-  max-width: 300px;
   line-height: 1.4;
 }
 
-/* Dica de clicar */
 .services-hint {
   font-size: 12px;
   color: #94A3B8;
 }
 
-/* Título "Serviços" */
-.services-title {
-  font-size: 36px;
-  font-weight: 700;
-  color: #FFFFFF;
+/* Card maior e mais próximo do texto */
+.services-card {
+  background-color: #992802;
+  border-radius: 16px;
+  padding: 80px 100px;
+  position: relative;
+  overflow: hidden;
+  flex: 1;
 }
 
-/* Lista de serviços */
+.services-title {
+  font-size: 48px;
+  font-weight: 700;
+  color: #FFFFFF;
+  position: relative;
+  z-index: 2;
+  text-align: center;
+}
+
+/* Estrela em tom de azul escuro, não preto */
+.services-star {
+  width: 350px;
+  position: absolute;
+  top: -40px;
+  left: -50px;
+  filter: brightness(0) saturate(100%) invert(5%) sepia(50%) saturate(3000%) hue-rotate(200deg);
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+/* Lista de serviços mais junta */
 .services-list {
   display: flex;
   flex-direction: column;
-  /* empilha os itens de cima pra baixo */
-
   align-items: center;
-  gap: 8px;
+  gap: 2px;
 }
 
-/* Cada botão de serviço */
 .service-item {
   background: none;
   border: none;
@@ -52,24 +71,20 @@
   font-size: 16px;
   font-weight: 700;
   cursor: pointer;
-  padding: 12px 0;
-  text-align: left;
-  width: 100%;
-  max-width: 500px;
+  padding: 10px 0;
+  text-align: center;
 }
 
 .service-item:hover {
   color: #992802;
 }
 
-/* Card de descrição que aparece ao clicar */
 .service-card {
   background-color: #20304C;
   border-radius: 10px;
   padding: 24px;
   max-width: 500px;
   margin: 8px auto;
-  /* auto centraliza horizontalmente */
 }
 
 .service-card h3 {

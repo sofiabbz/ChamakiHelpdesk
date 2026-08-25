@@ -2,7 +2,7 @@
 
 .hero {
   background-color: #000e26;
-  padding: 120px 60px 60px;
+  padding: 250px 60px 60px;
   /* 120px no topo pra não ficar atrás do navbar fixo */
 
   display: flex;
@@ -24,7 +24,8 @@
   display: flex;
   flex-direction: column;
   /* column (coluna) — empilha os filhos de cima pra baixo */
-
+  position: relative;
+  overflow: hidden;
   justify-content: space-between;
 }
 
@@ -91,4 +92,14 @@
 
 .hero-btn:hover {
   background-color: #2a3d5c;
+}
+
+.hero-star {
+  width: 250px;
+  position: absolute;
+  top: -20px;
+  right: -40px;
+  filter: brightness(0);
+  opacity: 0.25;
+  pointer-events: none;
 }

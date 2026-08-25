@@ -1,8 +1,12 @@
+import estrela from "../../assets/estrela.png";
 import "./Hero.css";
+import { useNavigate } from "react-router-dom";
 
 function Hero() {
+  const navigate = useNavigate();
+
   return (
-    <section className="hero">
+    <section className="hero" id="home">
       {/* section (seção) — divide a página em blocos */}
 
       <div className="hero-content">
@@ -16,6 +20,8 @@ function Hero() {
         <p className="hero-phrase">
           Precisa de um suporte no seu computador? Nós podemos te ajudar com isso!
         </p>
+
+        <img className="hero-star" src={estrela} />    
       </div>
 
       <div className="hero-text">
@@ -32,7 +38,7 @@ function Hero() {
         </p>
       </div>
 
-      <button className="hero-btn">Solicitar Suporte</button>
+      <button className="hero-btn" onClick={() => navigate("/login")}>Solicitar Suporte</button>
     </section>
   );
 }

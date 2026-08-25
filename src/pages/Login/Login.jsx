@@ -1,20 +1,29 @@
-import { Link } from "react-router-dom";
-// Link — substitui o <a> pra navegar entre páginas sem recarregar
-
+import { Link, useNavigate } from "react-router-dom";
+import logo from "../../assets/logo-chamaki.png";
+import estrela from "../../assets/estrela.png";
 import "./Login.css";
 
 function Login() {
+  const navigate = useNavigate();
+  // navigate (navegar) — função que muda de página pelo código
+
+  const handleLogin = () => {
+    navigate("/dashboard");
+    // Quando clicar em Entrar, vai pro dashboard do cliente
+  };
   return (
     <div className="login-page">
       {/* Lado esquerdo — brand */}
       <div className="login-brand">
         <div className="login-brand-top">
-          <h1 className="login-brand-name">Chamaki</h1>
-          <p className="login-brand-sub">seu serviço de helpdesk.</p>
+          <img src={logo} alt="Chamaki" className="login-logo" />
         </div>
+
+        <img src={estrela} alt="" className="login-star" />
+
         <p className="login-brand-phrase">
-          Precisa de um suporte no seu computador? Nós podemos te ajudar
-          com isso!
+          Precisa de um suporte no seu computador? Nós podemos te ajudar com
+          isso!
         </p>
       </div>
 
@@ -34,10 +43,14 @@ function Login() {
             <input type="checkbox" />
             Lembrar de mim
           </label>
-          <a href="#" className="login-forgot">Esqueceu sua senha?</a>
+          <a href="#" className="login-forgot">
+            Esqueceu sua senha?
+          </a>
         </div>
 
-        <button className="login-btn">Entrar</button>
+        <button className="login-btn" onClick={handleLogin}>
+          Entrar
+        </button>
 
         <div className="login-divider-text">
           <span>OU</span>

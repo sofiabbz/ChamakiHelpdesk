@@ -1,5 +1,7 @@
 /* Seção inteira */
 .contact {
+  position: relative;
+  overflow: hidden;
   background-color: #000E26;
   padding: 60px;
   text-align: center;
@@ -77,4 +79,14 @@
 
 .contact-btn:hover {
   background-color: #7a2002;
+}
+
+.contact-star {
+  width: 400px;
+  position: absolute;
+  bottom: -80px;
+  left: -60px;
+  filter: brightness(0) saturate(100%) invert(5%) sepia(50%) saturate(3000%) hue-rotate(200deg);
+  opacity: 0.4;
+  pointer-events: none;
 }
