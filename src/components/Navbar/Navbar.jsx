@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import logo from "../../assets/logo-chamaki.png";
+import logo from "../../assets/logo-all.png";
 // Importa a imagem do logo
 
 import "./Navbar.css";

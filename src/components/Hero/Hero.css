@@ -103,3 +103,8 @@
   opacity: 0.25;
   pointer-events: none;
 }
+
+.hero-logo {
+  width: 200px;
+  object-fit: contain;
+}

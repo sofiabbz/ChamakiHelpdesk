@@ -1,6 +1,7 @@
 import estrela from "../../assets/estrela.png";
-import "./Hero.css";
+import logo from "../../assets/logo-all.png";
 import { useNavigate } from "react-router-dom";
+import "./Hero.css";
 
 function Hero() {
   const navigate = useNavigate();
@@ -13,8 +14,7 @@ function Hero() {
         {/* Lado esquerdo — logo e frase */}
 
         <div className="hero-brand">
-          <h2 className="hero-brand-name">Chamaki</h2>
-          <p className="hero-brand-sub">seu serviço de helpdesk.</p>
+          <img src={logo} alt="Logo da Chamaki" className="hero-logo" />
         </div>
 
         <p className="hero-phrase">
