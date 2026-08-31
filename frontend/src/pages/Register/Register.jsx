@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import estrela from "../../assets/estrela.png";
+import PasswordStrength from "../../components/PasswordStrength/PasswordStrength";
 import axios from "axios";
-// axios — biblioteca pra fazer requisições HTTP pro backend
 import "./Register.css";
 
 function Register() {
@@ -16,20 +16,36 @@ function Register() {
     password: "",
     confirmPassword: "",
   });
-  // formData — guarda os valores de todos os campos
 
   const [error, setError] = useState("");
-  // error — guarda mensagem de erro se algo der errado
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
-    // Atualiza o campo que o usuário digitou
-    // e.target.name = nome do campo (ex: "email")
-    // e.target.value = valor digitado
+  };
+
+  const validatePassword = (password) => {
+    if (password.length < 8) {
+      return "A senha deve ter pelo menos 8 caracteres";
+    }
+    if (!/[!@#$%^&*(),.?":{}|<>]/.test(password)) {
+      return "A senha deve ter pelo menos um caractere especial (!@#$%...)";
+    }
+    return null;
   };
 
   const handleSubmit = async () => {
-    // Função que roda quando clicar em "Criar Conta"
+    setError("");
+
+    if (!formData.name || !formData.email || !formData.cpf || !formData.password) {
+      setError("Preencha todos os campos obrigatórios!");
+      return;
+    }
+
+    const passwordError = validatePassword(formData.password);
+    if (passwordError) {
+      setError(passwordError);
+      return;
+    }
 
     if (formData.password !== formData.confirmPassword) {
       setError("As senhas não coincidem!");
@@ -44,12 +60,10 @@ function Register() {
         phone: formData.phone,
         password: formData.password,
       });
-      // Envia os dados pro backend
 
       navigate("/login");
-      // Se deu certo, vai pra tela de login
     } catch (err) {
-      setError("Erro ao cadastrar. Verifique os dados.");
+      setError("Erro ao cadastrar. E-mail ou CPF já cadastrado.");
     }
   };
 
@@ -62,11 +76,10 @@ function Register() {
         <div className="register-divider"></div>
 
         {error && <p className="register-error">{error}</p>}
-        {/* Se tiver erro, mostra a mensagem */}
 
         <div className="register-grid">
           <div>
-            <label className="register-label">Nome Completo</label>
+            <label className="register-label">Nome Completo *</label>
             <input
               type="text"
               name="name"
@@ -77,7 +90,7 @@ function Register() {
           </div>
 
           <div>
-            <label className="register-label">CPF</label>
+            <label className="register-label">CPF *</label>
             <input
               type="text"
               name="cpf"
@@ -88,7 +101,7 @@ function Register() {
           </div>
 
           <div>
-            <label className="register-label">E-mail</label>
+            <label className="register-label">E-mail *</label>
             <input
               type="email"
               name="email"
@@ -99,7 +112,7 @@ function Register() {
           </div>
 
           <div>
-            <label className="register-label">Senha</label>
+            <label className="register-label">Senha *</label>
             <input
               type="password"
               name="password"
@@ -107,6 +120,7 @@ function Register() {
               value={formData.password}
               onChange={handleChange}
             />
+            <PasswordStrength password={formData.password} />
           </div>
 
           <div>
@@ -121,7 +135,7 @@ function Register() {
           </div>
 
           <div>
-            <label className="register-label">Confirmar Senha</label>
+            <label className="register-label">Confirmar Senha *</label>
             <input
               type="password"
               name="confirmPassword"

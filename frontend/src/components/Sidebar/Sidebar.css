@@ -59,9 +59,17 @@
 .sidebar-logout {
   padding: 10px 20px;
   color: #64748B;
-  text-decoration: none;
   font-size: 13px;
   margin-top: auto;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  font-family: inherit;
+}
+
+.sidebar-logout:hover {
+  color: #FFFFFF;
 }
 
 .sidebar-logout:hover {
