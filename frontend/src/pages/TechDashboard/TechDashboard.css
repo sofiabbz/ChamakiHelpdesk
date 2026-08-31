@@ -196,3 +196,15 @@
   background-color: #1a2d4a;
   cursor: pointer;
 }
+
+.table-empty {
+  text-align: center;
+  color: #64748B;
+  padding: 30px;
+  font-size: 14px;
+}
+
+.badge-em-andamento {
+  background-color: rgba(245, 158, 11, 0.15);
+  color: #F59E0B;
+}

@@ -152,3 +152,9 @@
 .btn-submit:hover {
   background-color: #7a2002;
 }
+
+.new-ticket-error {
+  color: #EF4444;
+  font-size: 14px;
+  margin-top: 16px;
+}

@@ -1,13 +1,66 @@
-import Sidebar from "../../components/Sidebar/Sidebar";
-import "./TechDashboard.css";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import Sidebar from "../../components/Sidebar/Sidebar";
+import axios from "axios";
+import "./TechDashboard.css";
 
 function TechDashboard() {
-  const tickets = [
-    { id: "#001", title: "Computador com memória cheia.", requester: "Maria Rodrigues Melo", category: "Hardware", status: "Aberto", date: "17/08/26", priority: "Alta" },
-    { id: "#002", title: "Instalação do Java", requester: "Pedro Souza Santos", category: "Software/Acesso", status: "Resolvido", date: "17/08/26", priority: "Baixa" },
-  ];
   const navigate = useNavigate();
+  const [tickets, setTickets] = useState([]);
+
+  useEffect(() => {
+    const fetchTickets = async () => {
+      try {
+        const response = await axios.get("http://localhost:3000/api/tickets");
+        setTickets(response.data);
+        // Técnico vê TODOS os chamados, não filtra
+      } catch (err) {
+        console.log("Erro ao buscar chamados");
+      }
+    };
+
+    fetchTickets();
+  }, []);
+
+  const counters = {
+    total: tickets.length,
+    andamento: tickets.filter((t) => t.status === "Em andamento").length,
+    resolvidos: tickets.filter((t) => t.status === "Resolvido").length,
+    abertos: tickets.filter((t) => t.status === "Aberto").length,
+    criticos: tickets.filter((t) => t.priority === "Crítica").length,
+  };
+
+  // Conta por status
+  const statusData = {
+    aberto: tickets.filter((t) => t.status === "Aberto").length,
+    andamento: tickets.filter((t) => t.status === "Em andamento").length,
+    resolvido: tickets.filter((t) => t.status === "Resolvido").length,
+    fechado: tickets.filter((t) => t.status === "Fechado").length,
+  };
+
+  // Conta por categoria
+  const categoryData = {
+    hardware: tickets.filter((t) => t.category === "Hardware").length,
+    software: tickets.filter((t) => t.category === "Software").length,
+    rede: tickets.filter((t) => t.category === "Rede").length,
+    acesso: tickets.filter((t) => t.category === "Acesso / Permissões").length,
+  };
+
+  // Conta por prioridade
+  const priorityData = {
+    critica: tickets.filter((t) => t.priority === "Crítica").length,
+    alta: tickets.filter((t) => t.priority === "Alta").length,
+    media: tickets.filter((t) => t.priority === "Média").length,
+    baixa: tickets.filter((t) => t.priority === "Baixa").length,
+  };
+
+  // Calcula porcentagem pra largura das barras
+  const maxStatus = Math.max(...Object.values(statusData), 1);
+  const maxCategory = Math.max(...Object.values(categoryData), 1);
+
+  const formatDate = (date) => {
+    return new Date(date).toLocaleDateString("pt-BR");
+  };
 
   return (
     <div className="tech-dashboard">
@@ -24,23 +77,23 @@ function TechDashboard() {
         {/* 5 Contadores */}
         <div className="tech-counters">
           <div className="tech-counter">
-            <span className="tech-counter-number blue">1</span>
+            <span className="tech-counter-number blue">{counters.total}</span>
             <span className="tech-counter-label">Total</span>
           </div>
           <div className="tech-counter">
-            <span className="tech-counter-number pink">3</span>
+            <span className="tech-counter-number pink">{counters.andamento}</span>
             <span className="tech-counter-label">Em andamento</span>
           </div>
           <div className="tech-counter">
-            <span className="tech-counter-number green">2</span>
+            <span className="tech-counter-number green">{counters.resolvidos}</span>
             <span className="tech-counter-label">Resolvidos</span>
           </div>
           <div className="tech-counter">
-            <span className="tech-counter-number yellow">6</span>
+            <span className="tech-counter-number yellow">{counters.abertos}</span>
             <span className="tech-counter-label">Abertos</span>
           </div>
           <div className="tech-counter">
-            <span className="tech-counter-number red">8</span>
+            <span className="tech-counter-number red">{counters.criticos}</span>
             <span className="tech-counter-label">Críticos</span>
           </div>
         </div>
@@ -54,25 +107,25 @@ function TechDashboard() {
               <div className="chart-bar-item">
                 <span className="chart-bar-label yellow">Aberto</span>
                 <div className="chart-bar-track">
-                  <div className="chart-bar-fill" style={{ width: "55%", backgroundColor: "#F59E0B" }}></div>
+                  <div className="chart-bar-fill" style={{ width: `${(statusData.aberto / maxStatus) * 100}%`, backgroundColor: "#F59E0B" }}></div>
                 </div>
               </div>
               <div className="chart-bar-item">
                 <span className="chart-bar-label purple">Em andamento</span>
                 <div className="chart-bar-track">
-                  <div className="chart-bar-fill" style={{ width: "38%", backgroundColor: "#8B5CF6" }}></div>
+                  <div className="chart-bar-fill" style={{ width: `${(statusData.andamento / maxStatus) * 100}%`, backgroundColor: "#8B5CF6" }}></div>
                 </div>
               </div>
               <div className="chart-bar-item">
                 <span className="chart-bar-label green">Resolvidos</span>
                 <div className="chart-bar-track">
-                  <div className="chart-bar-fill" style={{ width: "85%", backgroundColor: "#10B981" }}></div>
+                  <div className="chart-bar-fill" style={{ width: `${(statusData.resolvido / maxStatus) * 100}%`, backgroundColor: "#10B981" }}></div>
                 </div>
               </div>
               <div className="chart-bar-item">
                 <span className="chart-bar-label gray">Fechado</span>
                 <div className="chart-bar-track">
-                  <div className="chart-bar-fill" style={{ width: "15%", backgroundColor: "#64748B" }}></div>
+                  <div className="chart-bar-fill" style={{ width: `${(statusData.fechado / maxStatus) * 100}%`, backgroundColor: "#64748B" }}></div>
                 </div>
               </div>
             </div>
@@ -85,25 +138,25 @@ function TechDashboard() {
               <div className="chart-bar-item">
                 <span className="chart-bar-label red">Hardware</span>
                 <div className="chart-bar-track">
-                  <div className="chart-bar-fill" style={{ width: "75%", backgroundColor: "#992802" }}></div>
+                  <div className="chart-bar-fill" style={{ width: `${(categoryData.hardware / maxCategory) * 100}%`, backgroundColor: "#992802" }}></div>
                 </div>
               </div>
               <div className="chart-bar-item">
                 <span className="chart-bar-label blue">Software</span>
                 <div className="chart-bar-track">
-                  <div className="chart-bar-fill" style={{ width: "58%", backgroundColor: "#3B82F6" }}></div>
+                  <div className="chart-bar-fill" style={{ width: `${(categoryData.software / maxCategory) * 100}%`, backgroundColor: "#3B82F6" }}></div>
                 </div>
               </div>
               <div className="chart-bar-item">
                 <span className="chart-bar-label yellow">Rede</span>
                 <div className="chart-bar-track">
-                  <div className="chart-bar-fill" style={{ width: "38%", backgroundColor: "#F59E0B" }}></div>
+                  <div className="chart-bar-fill" style={{ width: `${(categoryData.rede / maxCategory) * 100}%`, backgroundColor: "#F59E0B" }}></div>
                 </div>
               </div>
               <div className="chart-bar-item">
                 <span className="chart-bar-label green">Acesso</span>
                 <div className="chart-bar-track">
-                  <div className="chart-bar-fill" style={{ width: "25%", backgroundColor: "#10B981" }}></div>
+                  <div className="chart-bar-fill" style={{ width: `${(categoryData.acesso / maxCategory) * 100}%`, backgroundColor: "#10B981" }}></div>
                 </div>
               </div>
             </div>
@@ -115,25 +168,25 @@ function TechDashboard() {
             <div className="chart-circles">
               <div className="chart-circle-item">
                 <div className="chart-circle red-border">
-                  <span>4</span>
+                  <span>{priorityData.critica}</span>
                 </div>
                 <span className="chart-circle-label">Crítica</span>
               </div>
               <div className="chart-circle-item">
                 <div className="chart-circle yellow-border">
-                  <span>7</span>
+                  <span>{priorityData.alta}</span>
                 </div>
                 <span className="chart-circle-label">Alta</span>
               </div>
               <div className="chart-circle-item">
                 <div className="chart-circle blue-border">
-                  <span>9</span>
+                  <span>{priorityData.media}</span>
                 </div>
                 <span className="chart-circle-label">Média</span>
               </div>
               <div className="chart-circle-item">
                 <div className="chart-circle green-border">
-                  <span>5</span>
+                  <span>{priorityData.baixa}</span>
                 </div>
                 <span className="chart-circle-label">Baixa</span>
               </div>
@@ -156,18 +209,26 @@ function TechDashboard() {
               <span>Prioridade</span>
             </div>
 
+            {tickets.length === 0 && (
+              <p className="table-empty">Nenhum chamado encontrado.</p>
+            )}
+
             {tickets.map((ticket) => (
-              <div className="tech-table-row" key={ticket.id} onClick={() => navigate("/chamado/1")}>
-                <span className="table-id">{ticket.id}</span>
+              <div
+                className="tech-table-row"
+                key={ticket.id}
+                onClick={() => navigate(`/chamado/${ticket.id}`)}
+              >
+                <span className="table-id">#{String(ticket.id).padStart(3, "0")}</span>
                 <span>{ticket.title}</span>
-                <span>{ticket.requester}</span>
+                <span>{ticket.user?.name || "—"}</span>
                 <span>{ticket.category}</span>
                 <span>
-                  <span className={`badge badge-${ticket.status.toLowerCase()}`}>
+                  <span className={`badge badge-${ticket.status.toLowerCase().replace(" ", "-")}`}>
                     {ticket.status}
                   </span>
                 </span>
-                <span>{ticket.date}</span>
+                <span>{formatDate(ticket.createdAt)}</span>
                 <span>{ticket.priority}</span>
               </div>
             ))}
