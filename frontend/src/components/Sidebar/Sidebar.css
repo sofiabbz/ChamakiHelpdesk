@@ -81,3 +81,30 @@
   object-fit: contain;
 }
 
+.sidebar-user {
+  padding: 14px 20px;
+  border-bottom: 1px solid #20304C;
+}
+
+.sidebar-user-name {
+  font-size: 14px;
+  color: #FFFFFF;
+  font-weight: 500;
+}
+
+.sidebar-icon {
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+.sidebar-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.sidebar-logout {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}

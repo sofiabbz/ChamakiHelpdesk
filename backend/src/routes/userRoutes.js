@@ -9,22 +9,16 @@ const prisma = new PrismaClient();
 
 // CADASTRAR usuário
 router.post("/cadastro", async (req, res) => {
-  // post — método HTTP pra criar dados
-  // async — permite usar await (esperar)
   try {
-    const { name, email, cpf, phone, password } = req.body;
-    // Pega os dados que vieram do formulário
+    const { name, email, cpf, phone, password, role } = req.body;
 
     const user = await prisma.user.create({
-      data: { name, email, cpf, phone, password },
+      data: { name, email, cpf, phone, password, role: role || "client" },
     });
-    // Cria o usuário no banco de dados
 
     res.status(201).json(user);
-    // 201 = Created (criado com sucesso)
   } catch (error) {
     res.status(400).json({ error: "Erro ao cadastrar usuário" });
-    // 400 = Bad Request (algo deu errado)
   }
 });
 
@@ -36,16 +30,30 @@ router.post("/login", async (req, res) => {
     const user = await prisma.user.findUnique({
       where: { email },
     });
-    // findUnique — busca um usuário pelo email
 
     if (!user || user.password !== password) {
       return res.status(401).json({ error: "Email ou senha incorretos" });
-      // 401 = Unauthorized (não autorizado)
     }
 
     res.json({ id: user.id, name: user.name, email: user.email, role: user.role });
   } catch (error) {
     res.status(400).json({ error: "Erro ao fazer login" });
+  }
+});
+
+// ATUALIZAR perfil
+router.put("/:id", async (req, res) => {
+  try {
+    const { name, phone } = req.body;
+
+    const user = await prisma.user.update({
+      where: { id: parseInt(req.params.id) },
+      data: { name, phone },
+    });
+
+    res.json(user);
+  } catch (error) {
+    res.status(400).json({ error: "Erro ao atualizar perfil" });
   }
 });
 

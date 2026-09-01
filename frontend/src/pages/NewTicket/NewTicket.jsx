@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Sidebar from "../../components/Sidebar/Sidebar";
+import Toast from "../../components/Toast/Toast";
 import axios from "axios";
 import "./NewTicket.css";
 
@@ -15,15 +16,20 @@ function NewTicket() {
   });
 
   const [error, setError] = useState("");
+  const [toast, setToast] = useState(null);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = async () => {
+    if (!formData.title || !formData.category || !formData.priority || !formData.description) {
+      setError("Preencha todos os campos!");
+      return;
+    }
+
     try {
       const user = JSON.parse(localStorage.getItem("user"));
-      // Pega o usuário logado que foi salvo no login
 
       await axios.post("http://localhost:3000/api/tickets", {
         title: formData.title,
@@ -31,19 +37,30 @@ function NewTicket() {
         priority: formData.priority,
         description: formData.description,
         userId: user.id,
-        // Envia o id do usuário pra saber quem criou o chamado
       });
 
-      navigate("/dashboard");
-      // Se deu certo, volta pro dashboard
+      setToast({ message: "Chamado criado com sucesso!", type: "success" });
+
+      setTimeout(() => {
+        navigate("/dashboard");
+      }, 2000);
+      // Espera 2 segundos mostrando a mensagem, depois redireciona
     } catch (err) {
-      setError("Erro ao criar chamado. Preencha todos os campos.");
+      setToast({ message: "Erro ao criar chamado.", type: "error" });
     }
   };
 
   return (
     <div className="new-ticket">
       <Sidebar type="client" />
+
+      {toast && (
+        <Toast
+          message={toast.message}
+          type={toast.type}
+          onClose={() => setToast(null)}
+        />
+      )}
 
       <main className="new-ticket-main">
         <h1 className="new-ticket-title">Título do chamado</h1>

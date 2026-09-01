@@ -4,6 +4,7 @@ import estrela from "../../assets/estrela.png";
 import PasswordStrength from "../../components/PasswordStrength/PasswordStrength";
 import axios from "axios";
 import "./Register.css";
+import { maskCPF, maskPhone } from "../../utils/masks";
 
 function Register() {
   const navigate = useNavigate();
@@ -15,12 +16,18 @@ function Register() {
     phone: "",
     password: "",
     confirmPassword: "",
+    role: "client",
   });
 
   const [error, setError] = useState("");
 
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    let { name, value } = e.target;
+
+    if (name === "cpf") value = maskCPF(value);
+    if (name === "phone") value = maskPhone(value);
+
+    setFormData({ ...formData, [name]: value });
   };
 
   const validatePassword = (password) => {
@@ -36,7 +43,12 @@ function Register() {
   const handleSubmit = async () => {
     setError("");
 
-    if (!formData.name || !formData.email || !formData.cpf || !formData.password) {
+    if (
+      !formData.name ||
+      !formData.email ||
+      !formData.cpf ||
+      !formData.password
+    ) {
       setError("Preencha todos os campos obrigatórios!");
       return;
     }
@@ -59,6 +71,7 @@ function Register() {
         cpf: formData.cpf,
         phone: formData.phone,
         password: formData.password,
+        role: formData.role,
       });
 
       navigate("/login");
@@ -143,6 +156,19 @@ function Register() {
               value={formData.confirmPassword}
               onChange={handleChange}
             />
+          </div>
+
+          <div>
+            <label className="register-label">Tipo de conta *</label>
+            <select
+              name="role"
+              className="register-input"
+              value={formData.role}
+              onChange={handleChange}
+            >
+              <option value="client">Cliente</option>
+              <option value="tech">Técnico</option>
+            </select>
           </div>
         </div>
 

@@ -3,11 +3,12 @@ import { Link, useParams } from "react-router-dom";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import axios from "axios";
 import "./TicketDetail.css";
+import Toast from "../../components/Toast/Toast";
 
 function TicketDetail() {
   const { id } = useParams();
   // useParams — pega o :id da URL (ex: /chamado/1 → id = 1)
-
+  const [toast, setToast] = useState(null);
   const [ticket, setTicket] = useState(null);
   // Começa null até carregar do banco
 
@@ -22,7 +23,9 @@ function TicketDetail() {
 
   const fetchTicket = async () => {
     try {
-      const response = await axios.get(`http://localhost:3000/api/tickets/${id}`);
+      const response = await axios.get(
+        `http://localhost:3000/api/tickets/${id}`,
+      );
       setTicket(response.data);
       setStatus(response.data.status);
     } catch (err) {
@@ -36,9 +39,12 @@ function TicketDetail() {
         status: newStatus,
       });
       setStatus(newStatus);
-      // Atualiza o status no banco e na tela
+      setToast({
+        message: `Status alterado para "${newStatus}"`,
+        type: "success",
+      });
     } catch (err) {
-      console.log("Erro ao atualizar status");
+      setToast({ message: "Erro ao atualizar status", type: "error" });
     }
   };
 
@@ -52,9 +58,9 @@ function TicketDetail() {
       });
       setNewComment("");
       fetchTicket();
-      // Recarrega o chamado pra mostrar o novo comentário
+      setToast({ message: "Comentário adicionado!", type: "success" });
     } catch (err) {
-      console.log("Erro ao enviar comentário");
+      setToast({ message: "Erro ao enviar comentário", type: "error" });
     }
   };
 
@@ -72,6 +78,13 @@ function TicketDetail() {
     return (
       <div className="ticket-detail">
         <Sidebar type={user?.role === "tech" ? "tech" : "client"} />
+        {toast && (
+          <Toast
+            message={toast.message}
+            type={toast.type}
+            onClose={() => setToast(null)}
+          />
+        )}
         <main className="ticket-main">
           <p>Carregando...</p>
         </main>
@@ -96,7 +109,9 @@ function TicketDetail() {
         <h1 className="ticket-title">{ticket.title}</h1>
 
         <div className="ticket-badges">
-          <span className={`badge badge-${status.toLowerCase().replace(" ", "-")}`}>
+          <span
+            className={`badge badge-${status.toLowerCase().replace(" ", "-")}`}
+          >
             {status}
           </span>
           <span className="badge badge-alta">{ticket.priority}</span>
@@ -115,19 +130,27 @@ function TicketDetail() {
                 </div>
                 <div>
                   <span className="info-label">E-mail</span>
-                  <span className="info-value">{ticket.user?.email || "—"}</span>
+                  <span className="info-value">
+                    {ticket.user?.email || "—"}
+                  </span>
                 </div>
                 <div>
                   <span className="info-label">Telefone</span>
-                  <span className="info-value">{ticket.user?.phone || "—"}</span>
+                  <span className="info-value">
+                    {ticket.user?.phone || "—"}
+                  </span>
                 </div>
                 <div>
                   <span className="info-label">Data da abertura</span>
-                  <span className="info-value">{formatDate(ticket.createdAt)}</span>
+                  <span className="info-value">
+                    {formatDate(ticket.createdAt)}
+                  </span>
                 </div>
                 <div>
                   <span className="info-label">Última atualização</span>
-                  <span className="info-value">{formatDate(ticket.updatedAt)}</span>
+                  <span className="info-value">
+                    {formatDate(ticket.updatedAt)}
+                  </span>
                 </div>
               </div>
 
@@ -147,8 +170,12 @@ function TicketDetail() {
                 {ticket.comments?.map((comment) => (
                   <div className="comment-item" key={comment.id}>
                     <div className="comment-header">
-                      <span className="comment-author">{comment.user?.name}</span>
-                      <span className="comment-time">{formatDate(comment.createdAt)}</span>
+                      <span className="comment-author">
+                        {comment.user?.name}
+                      </span>
+                      <span className="comment-time">
+                        {formatDate(comment.createdAt)}
+                      </span>
                     </div>
                     <p className="comment-text">{comment.text}</p>
                   </div>
@@ -212,11 +239,15 @@ function TicketDetail() {
               </div>
               <div className="detail-item">
                 <span className="info-label">Prioridade</span>
-                <span className="info-value priority-alta">{ticket.priority}</span>
+                <span className="info-value priority-alta">
+                  {ticket.priority}
+                </span>
               </div>
               <div className="detail-item">
                 <span className="info-label">Criado em</span>
-                <span className="info-value">{formatDate(ticket.createdAt)}</span>
+                <span className="info-value">
+                  {formatDate(ticket.createdAt)}
+                </span>
               </div>
             </div>
           </div>
