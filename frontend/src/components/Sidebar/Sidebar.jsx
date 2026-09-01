@@ -1,5 +1,13 @@
 import { Link, useNavigate } from "react-router-dom";
-import { MdDashboard, MdAdd, MdPerson, MdBarChart, MdSettings, MdLogout, MdList } from "react-icons/md";
+import {
+  MdDashboard,
+  MdAdd,
+  MdPerson,
+  MdBarChart,
+  MdSettings,
+  MdLogout,
+  MdList,
+} from "react-icons/md";
 import logo from "../../assets/logo-chamaki.png";
 import logoTec from "../../assets/logo-tec.png";
 import "./Sidebar.css";
@@ -25,7 +33,9 @@ function Sidebar({ type }) {
 
       {user && (
         <div className="sidebar-user">
-          <span className="sidebar-user-name">Olá, {user.name.split(" ")[0]}</span>
+          <span className="sidebar-user-name">
+            Olá, {user.name.split(" ")[0]}
+          </span>
         </div>
       )}
 
@@ -38,10 +48,10 @@ function Sidebar({ type }) {
             <Link to="/novo-chamado" className="sidebar-item">
               <MdAdd className="sidebar-icon" /> Novo Chamado
             </Link>
-            <Link to="#" className="sidebar-item">
+            <Link to="/relatorios" className="sidebar-item">
               <MdBarChart className="sidebar-icon" /> Relatórios
             </Link>
-            <Link to="#" className="sidebar-item">
+            <Link to="/configuracoes" className="sidebar-item">
               <MdSettings className="sidebar-icon" /> Configurações
             </Link>
           </>
